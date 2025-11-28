@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Bending Schedule Calculator for Footing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jsPDF Libraries for PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-slate-100 text-slate-800 p-4 sm:p-6 lg:p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-indigo-900">Bar Bending Schedule Calculator for Footing</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Input Section -->
+            <div id="footings-container" class="lg:col-span-1 space-y-8">
+                
+            </div>
+
+            <!-- Image and Results Section -->
+            <div class="lg:col-span-2">
+                 <!-- Image Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                         <h2 class="card-title">Footing Plan</h2>
+                        <div class="image-container">
+                            <img id="footing-plan-img" src="footing-plan.jpeg" alt="Footing Plan View" crossOrigin="anonymous" onerror="this.onerror=null;this.src='https://placehold.co/400x300/e2e8f0/475569?text=Footing+Plan';">
+                            <span id="plan-label-a" class="image-label" style="top: 3%; left: 62%; transform: translateX(-50%);">1500</span>
+                            <span id="plan-label-b" class="image-label" style="top: 65%; left: 7%; transform: translateY(-50%) rotate(0deg);">1200</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                         <h2 class="card-title">Footing Section</h2>
+                        <div class="image-container">
+                            <img id="footing-section-img" src="footing-section.jpg" alt="Footing Section View" crossOrigin="anonymous" onerror="this.onerror=null;this.src='https://placehold.co/400x300/e2e8f0/475569?text=Footing+Section';">
+                            <span id="section-label-gl" class="image-label" style="top: 47%; left: 10%; transform: translateY(-50%) rotate(0deg);">2000</span>
+                            <span id="section-label-p" class="image-label" style="top: 43%; right: 10%;">1000</span>
+                            <span id="section-label-d2" class="image-label" style="top: 50%; right: 13%;">100</span>
+                            <span id="section-label-d1" class="image-label" style="top: 57%; right: 12%;">300</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Results Section -->
+                <div class="card sticky top-8 mt-8">
+                    <h2 class="card-title">Total Summary</h2>
+                    <div id="total-summary-output" class="space-y-2 text-center">
+                        <p class="text-slate-500">Calculate to see the total weight.</p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 mt-6">
+                         <button id="calculateBtn" class="btn btn-primary w-full text-base">Calculate All Footings</button>
+                         <button id="addFootingBtn" class="btn btn-secondary w-full">Add Another Footing</button>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mt-2">
+                              <button id="resetBtn" class="btn btn-danger w-full">Reset All</button>
+                              <button id="downloadXlsBtn" class="btn btn-success w-full" disabled>Download CSV</button>
+                              <button id="downloadPdfBtn" class="btn btn-warning w-full" disabled>Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Summary Section -->
+            <div id="detailed-summary-container" class="lg:col-span-3 mt-8 hidden">
+                <div class="card">
+                    <h2 class="card-title">Detailed Bar Bending Schedule</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full detailed-summary-table">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Description</th>
+                                    <th class="w-48">Shape of Bar</th>
+                                    <th>No. of Items</th>
+                                    <th>Dia of bar (mm)</th>
+                                    <th>No. of bars</th>
+                                    <th>Cutting Length (m)</th>
+                                    <th>Total Length (m)</th>
+                                    <th>Unit Wt (kg/m)</th>
+                                    <th>Total Wt. (kg)</th>
+                                    <th>8mm (kg)</th>
+                                    <th>10mm (kg)</th>
+                                    <th>12mm (kg)</th>
+                                    <th>16mm (kg)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="detailed-bbs-tbody">
+                                <!-- Dynamic rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
